@@ -50,7 +50,10 @@ require('dotenv').config();
 
     // await page.click('#checkpointSubmitButton');
 
-    await page.waitForSelector("What's on your mind, Rcs?")
+    await page.waitForSelector("[aria-label='Create a post']");
+
+    await page.click("[aria-label='Create a post']");
+
     await sleep();
 
 })();
