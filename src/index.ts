@@ -1,18 +1,33 @@
 const puppeteer = require('puppeteer');
 import { executablePath } from "puppeteer";
 require('dotenv').config();
-// const user: string = process.env.USERNAME as string;
-// const pass: string = process.env.PASS as string;
+
 
 (async () => {
     const sleep = async () => await new Promise((r) => setTimeout(r, 100));
     const browser = await puppeteer.launch({
         slowMo: 100,
         ignoreHTTPSErrors: true,
-        headless: false, executablePath: executablePath(), args: ['--disable-infobars', '--disable-notifications', '--start-maximized', '--disable-blink-features=PasswordGeneration,PasswordManager', '--disable-web-notification-custom-layouts', "--disable-popup-blocking", "--allow-popups-during-page-unload", "--no-sandbox", "--disable-popup-blocking", "--disable-permissions-api", '--enable-automation'], ignoreDefaultArgs: ['--disable-save-password-bubble', '--enable-automation']
+        headless: false, executablePath: executablePath(), ignoreDefaultArgs: ['--disable-save-password-bubble'], args:
+            [
+                '--disable-infobars',
+                '--disable-web-notification-custom-layouts',
+                "--allow-popups-during-page-unload",
+                "--no-sandbox",
+                "--disable-popup-blocking",
+                "--disable-permissions-api",
+                '--start-maximized',
+                '--disable-blink-features=PasswordGeneration,PasswordManager',
+                '--disable-notifications',
+                '--disable-save-password-bubble',
+
+            ],
+        // ignoreDefaultArgs: ['--enable-automation']
     });
     const context = browser.defaultBrowserContext();
-    await context.overridePermissions('https://www.facebook.com', ["geolocation", "midi", "notifications", "camera", "microphone", "background-sync", "ambient-light-sensor", "accelerometer", "gyroscope", "magnetometer", "accessibility-events", "clipboard-read", "clipboard-write", "payment-handler", "idle-detection", "midi-sysex"
+    await context.overridePermissions(
+        'https://www.facebook.com', [
+        "geolocation", "midi", "notifications", "camera", "microphone", "background-sync", "ambient-light-sensor", "accelerometer", "gyroscope", "magnetometer", "accessibility-events", "clipboard-read", "clipboard-write", "payment-handler", "idle-detection", "midi-sysex"
     ]);
     const page = await browser.newPage();
     await page.setRequestInterception(false);
@@ -30,7 +45,7 @@ require('dotenv').config();
     await page.type('#email', 'prantaabir856@gmail.com', { delay: 200 });
     await page.waitForTimeout(600);
 
-    await page.type('#pass', 'Pranta@141219', { delay: 400 });
+    await page.type('#pass', 'Pranta@141219', { delay: 200 });
 
     await sleep();
 
@@ -48,11 +63,23 @@ require('dotenv').config();
     });
     await sleep();
 
+    (await page.$x('(//span[contains(text(), "What\'s on your mind")])'))[0].click();
+
+    await sleep();
+
+    await page.click('div[aria-label="Photo/Video"]')
+    // (await page.$x('//*[@id="mount_0_0_6A"]/div[1]/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[3]/div[1]/div[2]/div/div[1]/div/div/span/div/div/div[1]/div/div/div[1]/i')).click();
+    // (await page.$x('//div/i'))[17].click();
+
+
+
+    // (await page.$x('//div/i'))[17].click();
+    // console.log(btn)
+    // await page.($x('//span[contains(text(), "What\'s on your mind")]'))
+
+    // await btn.click();
     // await page.click('#checkpointSubmitButton');
 
-    await page.waitForSelector("[aria-label='Create a post']");
-
-    await page.click("[aria-label='Create a post']");
 
     await sleep();
 
