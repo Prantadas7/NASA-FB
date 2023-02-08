@@ -1,10 +1,10 @@
 const puppeteer = require('puppeteer');
 import { executablePath } from "puppeteer";
 require('dotenv').config();
-// const path = require('path');
+const path = require('path');
 
 
-(async () => {
+const handlePost = async () => {
     const sleep = async () => await new Promise((r) => setTimeout(r, 100));
     const options = {
         waitUntil: 'networkidle2',
@@ -78,9 +78,9 @@ require('dotenv').config();
 
     const input = await page.$x('//div/input[@type="file"]');
     if (input.length > 0) {
-        await input[0].uploadFile(path.resolve() + '/asset/myImage.jpg');
+        await input[0].uploadFile(path.resolve() + '/asset/myNewImg.jpg');
     }
+};
 
 
-
-})();
+module.exports = { handlePost };
