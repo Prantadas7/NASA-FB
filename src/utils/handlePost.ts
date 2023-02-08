@@ -54,7 +54,7 @@ const handlePost = async () => {
 
         await sleep();
 
-        await page.type('#pass', 'Abir@141219', { delay: 200 });
+        await page.type('#pass', 'Nothingtodo@141219', { delay: 200 });
 
         await sleep();
 
