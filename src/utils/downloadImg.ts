@@ -1,9 +1,8 @@
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
-const sharp = require('sharp');
 
-async function downloadNASAImage() {
+const downloadImg = async () => {
     try {
         const response = await axios.get('https://api.nasa.gov/planetary/apod?api_key=rIXr3bQiwGN1DzPKtZB0gUp69TkNndLwOx3oP5u8');
         const url = response.data.url;
@@ -26,9 +25,10 @@ async function downloadNASAImage() {
             console.error(err);
             throw new Error('Something went wrong')
         });
-    } catch (error) {
+    }
+    catch (error) {
         console.error(error);
     }
 };
 
-module.exports = { downloadNASAImage };
+module.exports = { downloadImg };
