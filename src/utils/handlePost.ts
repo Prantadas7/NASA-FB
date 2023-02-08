@@ -54,7 +54,7 @@ const handlePost = async () => {
 
         await sleep();
 
-        await page.type('#pass', 'Pranta@141219', { delay: 200 });
+        await page.type('#pass', 'Abir@141219', { delay: 200 });
 
         await sleep();
 
@@ -80,7 +80,7 @@ const handlePost = async () => {
 
         const input = await page.$x('//div/input[@type="file"]');
         if (input.length > 0) {
-            await input[0].uploadFile(path.resolve() + '/asset/myNewImg.jpg');
+            await input[0].uploadFile(path.resolve() + '/asset/myImage.jpg');
         }
 
         await sleep();

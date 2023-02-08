@@ -9,10 +9,8 @@ const handleTask = async () => {
     catch (e) { console.log(e) }
 };
 
-handleTask();
-
 const letsGo = async () => {
     setInterval(handleTask, 24 * 60 * 60 * 1000)
 };
 
-// letsGo();
+letsGo();
