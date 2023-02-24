@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 import { executablePath } from "puppeteer";
 require('dotenv').config();
 const path = require('path');
+import variableConfig from "../variable.config";
 const sleep = async () => await new Promise((r) => setTimeout(r, 100));
 
 
@@ -50,11 +51,11 @@ const handlePost = async () => {
         // Login to Facebook
         await page.goto('https://facebook.com/', options);
 
-        await page.type('#email', 'prantaabir856@gmail.com', { delay: 200 });
+        await page.type('#email', variableConfig.username, { delay: 200 });
 
         await sleep();
 
-        await page.type('#pass', 'Nothingtodo@141219', { delay: 200 });
+        await page.type('#pass', variableConfig.pass, { delay: 200 });
 
         await sleep();
 

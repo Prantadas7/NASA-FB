@@ -1,5 +1,3 @@
-node_modules/*
-dist/*
-.env/*
-.txt/*
-assets/*
+node_modules
+.env
+assets
