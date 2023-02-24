@@ -21,7 +21,7 @@ module.exports = {
             responseForImage.data.pipe(writer);
 
             writer.on('finish', () => {
-                console.log(`[+]=> The NASA Picture of the Day has been downloaded as ${fileName}`);
+                console.log(`[+] The NASA Picture of the Day has been downloaded as ${fileName}`);
                 sharp(path.resolve() + '/asset/myImage.jpg')
                     .resize(1696, 1064)
                     .toFile(path.resolve() + '/asset/resized.jpg', (err: any, _: any) => {
