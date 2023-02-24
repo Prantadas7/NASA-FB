@@ -4,7 +4,7 @@ const { downloadImg } = require('../src/utils/downloadImg.ts')
 const handleTask = async () => {
     try {
         await downloadImg();
-        await handlePost();
+        // await handlePost();
     }
     catch (e) { console.log(e) }
 };
