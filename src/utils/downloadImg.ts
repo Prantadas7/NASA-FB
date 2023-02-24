@@ -10,7 +10,7 @@ module.exports = {
             const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`);
             const url = response.data.url;
             const fileName = 'myImage';
-            const writer = fs.createWriteStream(`${path.resolve()}/asset/${fileName}.jpg`);
+            const writer = fs.createWriteStream(`${fileName}.jpg`);
 
             const responseForImage = await axios({
                 url,
@@ -22,9 +22,9 @@ module.exports = {
 
             writer.on('finish', () => {
                 console.log(`[+] The NASA Picture of the Day has been downloaded as ${fileName}`);
-                sharp(path.resolve() + '/asset/myImage.jpg')
+                sharp(path.resolve() + '/myImage.jpg')
                     .resize(1696, 1064)
-                    .toFile(path.resolve() + '/asset/resized.jpg', (err: any, _: any) => {
+                    .toFile(path.resolve() + '/resized.jpg', (err: any, _: any) => {
                         if (!err) {
                             console.log('Succesfully resized!');
                         }

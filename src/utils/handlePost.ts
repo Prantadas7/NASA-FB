@@ -83,7 +83,7 @@ const handlePost = async (data: any) => {
 
         const input = await page.$x('//div/input[@type="file"]');
         if (input.length > 0) {
-            await input[0].uploadFile(path.resolve() + '/asset/resized.jpg');
+            await input[0].uploadFile(path.resolve() + '/resized.jpg');
         }
 
         await sleep();
