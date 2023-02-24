@@ -6,7 +6,7 @@ import variableConfig from "../variable.config";
 const sleep = async () => await new Promise((r) => setTimeout(r, 100));
 
 
-const handlePost = async () => {
+const handlePost = async (data: any) => {
     const options = {
         waitUntil: 'networkidle2',
         timeout: 30000,
@@ -39,7 +39,7 @@ const handlePost = async () => {
 
         const page = await browser.newPage();
         await page.setRequestInterception(false);
-        await page.setViewport({ width: 1200, height: 800 });
+        await page.setViewport({ width: 1920, height: 1080 });
 
         await page.setDefaultNavigationTimeout(0);
 
@@ -51,7 +51,9 @@ const handlePost = async () => {
         // Login to Facebook
         await page.goto('https://facebook.com/', options);
 
-        await page.type('#email', variableConfig.username, { delay: 200 });
+        await sleep();
+
+        await page.type('#email', variableConfig?.username, { delay: 200 });
 
         await sleep();
 
@@ -81,17 +83,14 @@ const handlePost = async () => {
 
         const input = await page.$x('//div/input[@type="file"]');
         if (input.length > 0) {
-            await input[0].uploadFile(path.resolve() + '/asset/myImage.jpg');
+            await input[0].uploadFile(path.resolve() + '/asset/resized.jpg');
         }
 
         await sleep();
 
-        const textTyper = await page.$x('//div[@aria-label="What\'s on your mind, Rcs?"]');
+        const elem = await page.$('div[role="textbox"]');
 
-
-        if (textTyper.length > 0) {
-            await textTyper[0].type('#NASA_PICTURE_OF_THE_DAY', { delay: 200 })
-        }
+        await elem.type(`#NASA_PICTURE_OF_THE_DAY \n Brought to you by a BOT \n Date:${data.data.date} \n Description:${data.data.explanation} `, { delay: 200 });
 
         await sleep();
 
@@ -102,6 +101,8 @@ const handlePost = async () => {
         await page.waitForNavigation({
             waitUntil: 'networkidle0',
         });
+
+        console.log('Successfully posted!')
     }
     catch (e) {
         console.log(e);

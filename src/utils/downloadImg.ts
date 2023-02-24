@@ -8,7 +8,6 @@ module.exports = {
     downloadImg: async () => {
         try {
             const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`);
-            console.log(response)
             const url = response.data.url;
             const fileName = 'myImage';
             const writer = fs.createWriteStream(`${path.resolve()}/asset/${fileName}.jpg`);
@@ -23,13 +22,13 @@ module.exports = {
 
             writer.on('finish', () => {
                 console.log(`[+]=> The NASA Picture of the Day has been downloaded as ${fileName}`);
-                sharp(path.resolve() + 'myImage.jpg')
+                sharp(path.resolve() + '/asset/myImage.jpg')
                     .resize(1696, 1064)
-                    .toFile(path.resolve() + 'myImage.jpg', (err: any, info: any) => {
+                    .toFile(path.resolve() + '/asset/resized.jpg', (err: any, _: any) => {
                         if (!err) {
-                            console.log(info);
+                            console.log('Succesfully resized!');
                         }
-                        console.log(err['message']);
+                        else { console.log(err); }
                     })
             });
 
@@ -37,6 +36,8 @@ module.exports = {
                 console.error(err);
                 throw new Error('Something went wrong')
             });
+
+            return response;
         }
         catch (error) {
             console.error(error);

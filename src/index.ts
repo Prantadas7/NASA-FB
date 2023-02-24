@@ -3,13 +3,13 @@ const { downloadImg } = require('../src/utils/downloadImg.ts')
 
 const handleTask = async () => {
     try {
-        await downloadImg();
-        // await handlePost();
+        const data = await downloadImg();
+        await handlePost(data);
     }
     catch (e) { console.log(e) }
 };
 
-handleTask()
+handleTask();
 
 const letsGo = async () => {
     setInterval(handleTask, 24 * 60 * 60 * 1000)
