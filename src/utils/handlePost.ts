@@ -105,6 +105,7 @@ const handlePost = async (data: any) => {
         console.log('Successfully posted!')
     }
     catch (e) {
+        console.log(`[+] Login Unsuccessful!`)
         console.log(e);
         await browser.close();
     }
