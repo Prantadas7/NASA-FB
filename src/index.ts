@@ -9,6 +9,4 @@ const handleTask = async () => {
     catch (e) { console.log(e) }
 };
 
-// setInterval(handleTask, 24 * 60 * 60 * 1000);
-
-handleTask();
+setInterval(handleTask, 24 * 60 * 60 * 1000);

@@ -23,4 +23,4 @@
 <br>
 
 # <h1 style="color:skyblue">Demo :blush:  </h1>
-![demo](/asset/demo.png)
+![demo](/misc/demo.png)
