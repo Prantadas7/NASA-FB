@@ -90,7 +90,7 @@ const handlePost = async (data: any) => {
 
         const elem = await page.$('div[role="textbox"]');
 
-        await elem.type(`#NASA_PICTURE_OF_THE_DAY \n Brought to you by a BOT \n Date:${data.data.date} \n Description:${data.data.explanation} `, { delay: 200 });
+        await elem.type(`#NASA_PICTURE_OF_THE_DAY \nBrought to you by a BOT \nDate: ${data.data.date} \nDescription:${data.data.explanation} `, { delay: 200 });
 
         await sleep();
 
