@@ -14,7 +14,7 @@ const handlePost = async (data: any) => {
     const browser = await puppeteer.launch({
         slowMo: 200,
         ignoreHTTPSErrors: true,
-        headless: false, executablePath: executablePath(), ignoreDefaultArgs: ['--disable-save-password-bubble'], args:
+        headless: false, executablePath: executablePath(), ignoreDefaultArgs: ['--disable-save-password-bubble', '--enable-automation'], args:
             [
                 '--disable-infobars',
                 '--disable-web-notification-custom-layouts',
@@ -25,10 +25,8 @@ const handlePost = async (data: any) => {
                 '--start-maximized',
                 '--disable-blink-features=PasswordGeneration,PasswordManager',
                 '--disable-notifications',
-                '--disable-save-password-bubble',
-
-            ],
-        // ignoreDefaultArgs: ['--enable-automation']
+                '--disable-save-password-bubble'
+            ]
     });
     const context = browser.defaultBrowserContext();
     await context.overridePermissions(
@@ -88,9 +86,9 @@ const handlePost = async (data: any) => {
 
         await sleep();
 
-        const elem = await page.$('div[role="textbox"]');
+        const elem = await page.$x('//div/div[contains(text(),"What\'s on your mind,")]');
 
-        await elem.type(`#NASA_PICTURE_OF_THE_DAY \nBrought to you by a BOT \nDate: ${data.data.date} \nDescription:${data.data.explanation} `, { delay: 200 });
+        await elem[0].type(`#NASA_PICTURE_OF_THE_DAY \nBrought to you by a BOT \nDate: ${data.data.date} \nDescription:${data.data.explanation} `, { delay: 200 });
 
         await sleep();
 
