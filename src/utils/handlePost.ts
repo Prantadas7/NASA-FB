@@ -99,8 +99,6 @@ const handlePost = async (data: any) => {
         await page.waitForNavigation({
             waitUntil: 'networkidle0',
         });
-
-        console.log('Successfully posted!')
     }
     catch (e) {
         console.log(`[+] Login Unsuccessful!`)
@@ -109,6 +107,7 @@ const handlePost = async (data: any) => {
     }
 
     finally {
+        console.log('*Successfully posted*')
         await sleep();
         await browser.close();
     }
