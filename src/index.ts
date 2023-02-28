@@ -1,5 +1,5 @@
-const { handlePost } = require('../src/utils/handlePost.ts')
-const { downloadImg } = require('../src/utils/downloadImg.ts')
+const { handlePost } = require('../src/utils/handlePost.ts');
+const { downloadImg } = require('../src/utils/downloadImg.ts');
 
 const handleTask = async () => {
     try {
