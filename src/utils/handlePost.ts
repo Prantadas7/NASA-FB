@@ -88,7 +88,7 @@ const handlePost = async (data: any) => {
 
         const elem = await page.$x('//div/div[contains(text(),"What\'s on your mind,")]');
 
-        await elem[0].type(`#NASA_PICTURE_OF_THE_DAY \nBrought to you by a BOT \nDate: ${data.data.date} \nDescription:${data.data.explanation} `, { delay: 200 });
+        await elem[0]?.type(`#NASA_PICTURE_OF_THE_DAY \nPresented to you by a BOT. \nDate: ${data.data.date} \nDescription:${data.data.explanation} `, { delay: 200 });
 
         await sleep();
 
